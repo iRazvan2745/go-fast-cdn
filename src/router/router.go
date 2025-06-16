@@ -1,8 +1,10 @@
 package router
 
 import (
+	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/kevinanielsen/go-fast-cdn/src/middleware"
 )
 
@@ -13,7 +15,15 @@ func Router() {
 
 	s := NewServer(
 		WithPort(port),
-		WithMiddleware(middleware.CORSMiddleware()),
+		WithMiddleware(cors.New(cors.Config{
+			AllowOrigins:     []string{"*"},
+			AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+			AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+			ExposeHeaders:    []string{"Content-Length"},
+			AllowCredentials: true,
+			AllowWebSockets:  true,
+			MaxAge:           86400,
+		})),
 	)
 
 	// Add all the API routes
