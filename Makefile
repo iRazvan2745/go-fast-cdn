@@ -5,13 +5,9 @@ ARCH := $(shell uname -m | tr A-Z a-z | sed 's/^aarch/arm/' | sed 's/^x86_64/amd
 prep:
 	go mod tidy
 	go mod download
-	cd ui && pnpm i
 	go install github.com/air-verse/air@latest
 
-build: build_ui build_bin
-
-build_ui:
-	pnpm --dir ./ui build
+build: build_bin
 
 build_bin:
 ifeq ($(OS_NAME),darwin)
@@ -35,7 +31,6 @@ dev:
 clean: 
 	go clean
 	rm -rf bin/*
-	rm -rf ui/build/*
 
 vet:
 	go vet

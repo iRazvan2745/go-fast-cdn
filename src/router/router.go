@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/kevinanielsen/go-fast-cdn/src/middleware"
-	"github.com/kevinanielsen/go-fast-cdn/ui"
 )
 
 // Router initializes the router and sets up middleware, routes, etc.
@@ -19,9 +18,6 @@ func Router() {
 
 	// Add all the API routes
 	s.AddApiRoutes()
-
-	// Add the embedded ui routes
-	ui.AddRoutes(s.Engine)
 
 	s.Run()
 }
