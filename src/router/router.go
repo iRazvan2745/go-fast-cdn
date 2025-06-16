@@ -1,11 +1,9 @@
 package router
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/gin-contrib/cors"
-	"github.com/kevinanielsen/go-fast-cdn/src/middleware"
 )
 
 // Router initializes the router and sets up middleware, routes, etc.
